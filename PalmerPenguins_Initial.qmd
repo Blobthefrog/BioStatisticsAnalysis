@@ -200,7 +200,7 @@ penguins %>%
        x = "Bill Length (mm)", y = "Count")
 ```
 
-This graph does a better job at showing more accurate numbers and what the average bill length is. The histogram is easier to read thought and could be more visually appealing.
+This graph does a better job at showing more accurate numbers and what the average bill length is. The histogram is easier to read though and could be more visually appealing.
 
 ```{r}
 penguins %>%
@@ -273,7 +273,7 @@ penguins %>%
   theme_light()
 ```
 
-This graph shows the flipper length and bill length based off sex, island and species. It seems like the Adelie penguins have a smaller bill length with the females having a slightly smaller flipper lenth then the males. The Gentoo penguins ma bigger bill length with the females also having a smaller flipper length then the males. There is not enough information on the Chinstrap penguins.
+This graph shows the flipper length and bill length based off sex, island and species. It seems like the Adelie penguins have a smaller bill length with the females having a slightly smaller flipper length then the males. The Gentoo penguins ma bigger bill length with the females also having a smaller flipper length then the males. There is not enough information on the Chinstrap penguins.
 
 It seems to me geom creates different types of graphs where at the x and y inputs determine what is found on the sides. Maybe facet-grid is what makes the sex be placed on the top.
 
