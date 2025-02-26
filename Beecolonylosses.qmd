@@ -1,0 +1,88 @@
+---
+title: "Bee Colony Losses"
+author: "Julieanna"
+format: html
+editor: visual
+execute:
+  keep-md: true
+---
+
+## Bee Colony Losses
+
+```{r}
+colony <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2022/2022-01-11/colony.csv')
+stressor <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2022/2022-01-11/stressor.csv')
+```
+
+```{r}
+#install.packages("tidymodels")
+library(tidymodels)
+
+my_data_splits <- initial_split(colony, prop = 0.5)
+
+exploratory_data <- training(my_data_splits)
+test_data <- testing(my_data_splits)
+```
+
+## Hypothesis
+
+-   If the months are colder then more bee colonies will be lost.
+
+-   The states with more colonies lost will also have more colonies added.
+
+## Abstract
+
+In the United states bee colonies are lost for a number of reasons. In this study we will be looking at if more bee colonies are lost in the colder months then the warmer months. To do this we will be comparing the number of bee colonies lost to the months they were lost in.
+
+## Introduction
+
+In this study we are looking at honey bee colonies in the United States using the data from the USDA. Honey bees are social bees that produce honey from the nectar of flowers by breaking down the complex sugars using enzymes. In a colony there are male bees called drones and two different type of female bees being the Queen and worker bees. Worker bees collect nectar and maintain the hive where the Queen and drones purpose is for reproduction. While honey bees are not native to the United States they do play a big role in the agricultural industry making it important keep track at the number of colonies in the area.
+
+The Information provided by the USDA gives us a way to monitor the health of our honey bee colonies by giving insight into the changes in the population.The data includes the number of colonies, the number and percent of colonies lost, colonies added, and the number and percent of colonies renovated. There is also information on the states, months and the years showing when and where this data takes place.
+
+## Exploratory Analysis
+
+```{r}
+ggplot(exploratory_data, aes(x = colony_lost, y = months, fill = months)) +
+  geom_boxplot(outliers = FALSE) +  # Hide outliers
+  labs(title = "Exploratory Data Box Plot", x = "Colonies Lost", y = "Months") +
+  theme_minimal()
+```
+
+This box graph of the exploratory data shows that more bee colonies were lost during the months of October-December.
+
+## Methodology
+
+In this section we will be using the complete data set from the USDA where we only used half the data set in the exploratory analyses.
+
+```{r}
+ggplot(colony, aes(x = months, y = colony_lost, fill = months)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Colonies Lost Bar Graph", x = "Months", y = "Colonies Lost") +
+  theme_minimal()
+```
+
+```{r}
+ggplot(colony, aes(x = colony_lost, y = months, fill = months)) +
+  geom_boxplot(outliers = FALSE) +  # Hide outliers
+  labs(title = "Coloies Lost Box Plot", x = "Colonies Lost", y = "Months") +
+  theme_minimal()
+```
+
+```{r}
+ggplot(colony, aes(x = months, y = colony_lost, color = months)) +
+  geom_jitter(width = 0.2, size = 2, alpha = 0.7) +  # Jittered points
+  labs(title = "Colonies Lost Jittered Scatter Plot", x = "Months", y = "Colonies Lost") +
+  theme_minimal()
+```
+
+```{r}
+ggplot(colony, aes(x = months, y = colony_lost, fill = months)) +
+  geom_violin() +
+  labs(title = "Colonies Lost Violin Plot", x = "Months", y = "Colonies Lost") +
+  theme_minimal()
+```
+
+## Conclusions
+
+In this research we looked at bee colonies in the United States using the information provided by the USDA. Using that data I looked at if the time of year affected the amount of bee colony losses predicting that there would be more bee colony losses during the colder months of the year. While the scatter plot shows the colder months having the highest values in outliers the box plot shows that July-September had the most bee colony losses on average. Since July-September are the warmest months of the year we must reject the hypothesis of this research. What was interesting was that the hottest and coldest months of the year had the most bee colonies lost making me curious if drastic temperatures in general contribute to bee colony losses.
