@@ -28,8 +28,6 @@ test_data <- testing(my_data_splits)
 
 -   If the months are colder then more bee colonies will be lost.
 
--   The states with more colonies lost will also have more colonies added.
-
 ## Abstract
 
 In the United states bee colonies are lost for a number of reasons. In this study we will be looking at if more bee colonies are lost in the colder months then the warmer months. To do this we will be comparing the number of bee colonies lost to the months they were lost in.
@@ -38,9 +36,11 @@ In the United states bee colonies are lost for a number of reasons. In this stud
 
 In this study we are looking at honey bee colonies in the United States using the data from the USDA. Honey bees are social bees that produce honey from the nectar of flowers by breaking down the complex sugars using enzymes. In a colony there are male bees called drones and two different type of female bees being the Queen and worker bees. Worker bees collect nectar and maintain the hive where the Queen and drones purpose is for reproduction. While honey bees are not native to the United States they do play a big role in the agricultural industry making it important keep track at the number of colonies in the area.
 
-The Information provided by the USDA gives us a way to monitor the health of our honey bee colonies by giving insight into the changes in the population.The data includes the number of colonies, the number and percent of colonies lost, colonies added, and the number and percent of colonies renovated. There is also information on the states, months and the years showing when and where this data takes place.
+The Information provided by the USDA gives us a way to monitor the health of our honey bee colonies by giving insight into the changes in the population.The data includes the number of colonies, the number and percent of colonies lost, colonies added, and the number and percent of colonies renovated. There is also information on the states, months and the years showing when and where this data takes place. Using this data I hypothesize that if the months are colder then more bee colonies will be lost
 
 ## Exploratory Analysis
+
+Half the data was taken out for an exploratory analysis which was used to create a box plot to compare the number of colonies lost vs. the months they were lost in.
 
 ```{r}
 ggplot(exploratory_data, aes(x = colony_lost, y = months, fill = months)) +
@@ -53,14 +53,7 @@ This box graph of the exploratory data shows that more bee colonies were lost du
 
 ## Methodology
 
-In this section we will be using the complete data set from the USDA where we only used half the data set in the exploratory analyses.
-
-```{r}
-ggplot(colony, aes(x = months, y = colony_lost, fill = months)) +
-  geom_bar(stat = "identity", position = "dodge") +
-  labs(title = "Colonies Lost Bar Graph", x = "Months", y = "Colonies Lost") +
-  theme_minimal()
-```
+In this section we will be using the complete data set from the USDA where we only used half the data set in the exploratory analyses. Using a box plot and and scatter plot the data between the number of colonies lost and the months they were lost in were compared.
 
 ```{r}
 ggplot(colony, aes(x = colony_lost, y = months, fill = months)) +
@@ -69,6 +62,8 @@ ggplot(colony, aes(x = colony_lost, y = months, fill = months)) +
   theme_minimal()
 ```
 
+This box graph shows that in the data collected more colonies were lost between July-September.
+
 ```{r}
 ggplot(colony, aes(x = months, y = colony_lost, color = months)) +
   geom_jitter(width = 0.2, size = 2, alpha = 0.7) +  # Jittered points
@@ -76,12 +71,7 @@ ggplot(colony, aes(x = months, y = colony_lost, color = months)) +
   theme_minimal()
 ```
 
-```{r}
-ggplot(colony, aes(x = months, y = colony_lost, fill = months)) +
-  geom_violin() +
-  labs(title = "Colonies Lost Violin Plot", x = "Months", y = "Colonies Lost") +
-  theme_minimal()
-```
+In this graph we can see that there is more outliers and speratic data with in the colder months of the year with April-June having the least extreme outliers.
 
 ## Conclusions
 
